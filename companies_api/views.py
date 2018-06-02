@@ -4,25 +4,46 @@ from django.db.models import Count
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from rest_framework import generics
-# from rest_framework.renderers import JSONRenderer
 
 
 class PostalAddressList(generics.ListCreateAPIView):
+    '''
+    API to view list of all available postal address
+    1. View
+    2. Create
+    '''
     queryset = PostalAddress.objects.all()
     serializer_class = PostalAddressSerializer
 
 
 class PostalAddressDetail(generics.RetrieveUpdateDestroyAPIView):
+    '''
+    API to view details of given postal address
+    1. View
+    2. Update
+    3. Delete
+    '''
     queryset = PostalAddress.objects.all()
     serializer_class = PostalAddressSerializer
 
 
 class CompanyList(generics.ListCreateAPIView):
+    '''
+    API to view list of all available companies
+    1. View
+    2. Create
+    '''
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
 
 
 class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
+    '''
+    API to view details of given company
+    1. View
+    2. Update
+    3. Delete
+    '''
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
 
@@ -49,6 +70,7 @@ class CompanyFilterView(View):
                 'total': len(queryset),
                 'postal_codes': []
             })
+
             for item in queryset:
                 response['postal_codes'].append(item.get('postal_code'))
 
@@ -57,6 +79,7 @@ class CompanyFilterView(View):
             queryset = Company.objects.filter(postal_code__city=city)
             response.update(
                 {'status': 200, 'total': len(queryset), 'companies': []})
+
             for company in queryset:
                 response['companies'].append({
                     'name': company.name,
@@ -72,6 +95,7 @@ class CompanyFilterView(View):
             queryset = Company.objects.filter(name=name)
             response.update(
                 {'status': 200, 'total': len(queryset), 'companies': []})
+
             for company in queryset:
                 response['companies'].append({
                     'name': company.name,
