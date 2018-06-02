@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 5. Make migrations
 ```python
-python manage.y makemigrations
+python manage.py makemigrations
 ```
 
 6. Migrate the generated migrations
