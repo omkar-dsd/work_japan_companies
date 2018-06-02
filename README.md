@@ -11,7 +11,7 @@ API to manage various company addresses
 
 1. Clone the project from git repository
 ```bash
-git clone some_link_here
+git clone https://github.com/omkar-dsd/work_japan_companies.git
 ```
 2. Go into root directory
 ```bash
